@@ -51,10 +51,13 @@ Each entry covers the **core algo/pattern**, the **key trick**, and the **time &
 
 | | |
 |---|---|
-| **Pattern** | *(Placeholder — implementation pending)* |
-| **Problem** | Allocate contiguous blocks to servers. |
+| **Pattern** | Custom Sorting & Interval Merging |
+| **Problem** | Merge overlapping contiguous server blocks. |
+| **Logic** | Sort the 2D array of blocks by `start_time`. Iterate and maintain a list of merged blocks. If a block overlaps with the last merged block (`current_start <= last_end`), extend `last_end` to `max(last_end, current_end)`. Else, add as a new block. |
+| **Why it works** | Sorting guarantees that any overlapping intervals will be adjacent to each other, allowing a single sweep. |
+| **Complexity** | `O(n log n)` time · `O(n)` space |
 
-> 🚧 **Status:** File is currently empty. Likely a bin-packing or greedy/binary-search-on-answer problem.
+> 💡 **Revision tip:** Sort by start time first! Then merge by checking if `current_start <= last_end`.
 
 ---
 
@@ -140,6 +143,20 @@ Each entry covers the **core algo/pattern**, the **key trick**, and the **time &
 
 ---
 
+## 11. Secure Packet (Palindrome Check) — `securePacket.java`
+
+| | |
+|---|---|
+| **Pattern** | Lexicographical Frequency Counter |
+| **Problem** | Check if a string can be rearranged into a palindrome. |
+| **Logic** | Create an `int[26]` frequency array to count character occurrences. If more than one character has an odd frequency, it cannot form a palindrome. |
+| **Why it works** | A palindrome reads the same forwards and backwards. Characters must occur in pairs, with at most one character having an odd count (the middle element). |
+| **Complexity** | `O(n)` time · `O(1)` space |
+
+> 💡 **Revision tip:** Count the frequencies. If `oddCount > 1`, return NO.
+
+---
+
 ## 🔁 Common Patterns Cheat Sheet
 
 | Pattern | Used In | Core Idea |
@@ -149,6 +166,8 @@ Each entry covers the **core algo/pattern**, the **key trick**, and the **time &
 | **Boyer-Moore Voting** | Dominant Signal | Cancel-out approach to find majority element |
 | **Euclidean GCD** | GCD, LCM | `gcd(a,b) = gcd(b, a%b)` until remainder is 0 |
 | **Single-pass Min/Max Tracking** | Second Largest | Track top-k values in one traversal |
+| **Custom Sorting & Merge** | Server Block Allocation | Sort by start time, then merge adjacent overlaps |
+| **Frequency Array** | Secure Packet | Count character occurrences using a fixed-size array |
 
 ---
 
