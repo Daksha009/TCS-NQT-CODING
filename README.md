@@ -157,17 +157,61 @@ Each entry covers the **core algo/pattern**, the **key trick**, and the **time &
 
 ---
 
+## 12. Anagram Clusters — `AnagramClusters.java`
+
+| | |
+|---|---|
+| **Pattern** | HashMap with Sorted Keys |
+| **Problem** | Group and count frequencies of anagrams. |
+| **Logic** | Convert each string to a char array, sort it, and use the sorted string as a key in a HashMap. Increment the count for that key. |
+| **Why it works** | Anagrams contain exactly the same characters, so sorting them always yields the identical string key. |
+| **Complexity** | `O(n * k log k)` time (k = max word length) · `O(n * k)` space |
+
+> 💡 **Revision tip:** Sort the word to create a canonical signature, then use it as a HashMap key.
+
+---
+
+## 13. Legacy Encrypter (Reverse Vowels) — `LegacyEncrypter.java`
+
+| | |
+|---|---|
+| **Pattern** | Two Pointers |
+| **Problem** | Reverse only the vowels in a given string. |
+| **Logic** | Use `left` and `right` pointers. Advance `left` until a vowel is found, and `right` backwards until a vowel is found. Swap them, then move both inward. |
+| **Why it works** | Consonants stay in their original positions, and the two pointers efficiently pair vowels from opposite ends for swapping. |
+| **Complexity** | `O(n)` time · `O(n)` space (for char array) |
+
+> 💡 **Revision tip:** Just like reversing an array, but with `while(!isVowel)` checks before swapping.
+
+---
+
+## 14. Server Uptime Chain — `ServerUptimeChain.java`
+
+| | |
+|---|---|
+| **Pattern** | HashSet for O(1) lookups |
+| **Problem** | Find the length of the longest consecutive sequence in an unsorted array. |
+| **Logic** | Add all elements to a HashSet. For each element, check if it's the start of a sequence (`!set.contains(num - 1)`). If yes, count upwards as long as `set.contains(num + 1)`. |
+| **Why it works** | The HashSet provides O(1) lookups. By only starting a streak when `num - 1` is absent, we ensure O(n) total time instead of O(n²). |
+| **Complexity** | `O(n)` time · `O(n)` space |
+
+> 💡 **Revision tip:** Only start counting if `num - 1` is NOT in the set! This avoids redundant work.
+
+---
+
 ## 🔁 Common Patterns Cheat Sheet
 
 | Pattern | Used In | Core Idea |
 |---|---|---|
 | **Digit Extraction** (`% 10` / `/ 10`) | Reverse, Palindrome, Armstrong, Sum of Digits | Process a number digit-by-digit from right to left |
-| **Two Pointers** | Target Sum | Squeeze from both ends on sorted data |
+| **Two Pointers** | Target Sum, Legacy Encrypter | Squeeze from both ends (or under specific conditions) |
 | **Boyer-Moore Voting** | Dominant Signal | Cancel-out approach to find majority element |
 | **Euclidean GCD** | GCD, LCM | `gcd(a,b) = gcd(b, a%b)` until remainder is 0 |
 | **Single-pass Min/Max Tracking** | Second Largest | Track top-k values in one traversal |
 | **Custom Sorting & Merge** | Server Block Allocation | Sort by start time, then merge adjacent overlaps |
 | **Frequency Array** | Secure Packet | Count character occurrences using a fixed-size array |
+| **HashMap w/ Canonical Keys** | Anagram Clusters | Sort string characters to use as a unified key |
+| **HashSet Lookups** | Server Uptime Chain | O(1) existence checks to find consecutive sequences |
 
 ---
 
