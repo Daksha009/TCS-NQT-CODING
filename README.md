@@ -215,4 +215,4 @@ Each entry covers the **core algo/pattern**, the **key trick**, and the **time &
 
 ---
 
-*Keep grinding 🔥 — Daksha*
+*Keep grinding 🔥 — Daksh*
